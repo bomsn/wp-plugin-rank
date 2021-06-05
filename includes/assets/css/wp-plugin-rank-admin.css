@@ -1,0 +1,32 @@
+.wppr-plugin-details {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+.wppr-plugin-details th, .wppr-plugin-details td {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+.wppr-plugin-rank {
+    text-align: left;
+    background: #fff;
+}
+
+.wppr-plugin-rank td, .wppr-plugin-rank th {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    vertical-align: top;
+}
+.wppr-top-competitors ul {
+    margin: 0;
+    margin-left: 15px;
+    list-style: decimal;
+}
+.wppr-top-competitors ul li::marker {
+    font-weight: 700;
+}
+.wppr-top-competitors ul li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
