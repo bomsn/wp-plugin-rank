@@ -1,7 +1,7 @@
 ## Introduction
 This small tool was initially made to track WP repository ranking for [Mega Forms](https://wordpress.org/plugins/mega-forms/) plugin. I noticed the plugin isn't getting any traction compared to other solutions that are far lower in terms of quality, Thus, I decided I needed a way to track how's the plugin doing in WP repository search results, and try to improve the ranking based on the given results.
 
-I did a small research and found that WordPress has a public API that I can use to pull data about any plugin. All I needed after that was 2 hours to create this small plugin to pull ranking data for the said plugin and present it in the admin dashboard. Later I thought it would be nice to share, especially that there are services charing for similar data.
+I did a small research and found that WordPress has a public API that I can use to pull data about any plugin. All I needed after that was 2 hours to create this small plugin to pull ranking data for the said plugin and present it in the admin dashboard. Later I thought it would be nice to share, especially that there are services out there charging a fee for similar data.
 
 ## Installation
 
