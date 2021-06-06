@@ -1,4 +1,4 @@
-![Screenshot](https://raw.githubusercontent.com/bomsn/wp-plugin-rank/master/screenshot.md)
+![Screenshot](https://raw.githubusercontent.com/bomsn/wp-plugin-rank/master/screenshot.png)
 
 ## Introduction
 This small tool was initially made to track WP repository ranking for [Mega Forms](https://wordpress.org/plugins/mega-forms/) plugin. I noticed the plugin isn't getting any traction compared to other solutions that are far lower in terms of quality, Thus, I decided I needed a way to track how's the plugin doing in WP repository search results, and try to improve the ranking based on the given results.
