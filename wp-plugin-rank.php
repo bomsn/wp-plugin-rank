@@ -15,6 +15,11 @@ if ( ! defined( 'WPINC' ) ) {
 
 define('WPPR_Name', 'Mega Forms');
 define('WPPR_Slug', 'mega-forms');
+// Add custom keywords here, or leave empty to use plugin tags only
+define('WPPR_Keywords', array(
+	// 'keyword 1',
+	// 'keyword 2',
+));
 
 /**
  * The core plugin class that is used to define all related hooks.

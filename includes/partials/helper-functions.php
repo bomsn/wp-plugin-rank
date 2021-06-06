@@ -1,4 +1,72 @@
 <?php
+function wppr_get_plugin_data()
+{
+
+    if (!function_exists('plugins_api')) {
+        require_once(ABSPATH . '/wp-admin/includes/plugin-install.php');
+    }
+
+    $call_api = get_transient('wppr_data');
+    if ($call_api === false || isset($_GET['fresh'])) {
+        /** Prepare data query */
+        $call_api = plugins_api(
+            'plugin_information',
+            array(
+                'slug' => WPPR_Slug,
+                'description' => false,
+                'short_description' => false,
+                'donate_link' => false,
+                'sections' => false,
+                'homepage' => false,
+                'added' => false,
+                'last_updated' => false,
+                'compatibility' => false,
+                'tested' => false,
+                'requires' => false,
+                'downloadlink' => false,
+            )
+        );
+        set_transient('wppr_data', $call_api, DAY_IN_SECONDS);
+    }
+
+    return $call_api;
+}
+
+function wppr_display_plugin_data($plugin_data)
+{
+
+    /** Check for Errors & Display the results */
+    if (is_wp_error($plugin_data)) {
+        echo '<pre>' . print_r($plugin_data->get_error_message(), true) . '</pre>';
+    } elseif (isset($plugin_data->tags)) {
+
+        wppr_get_template('plugin-details', $plugin_data);
+    }
+}
+function wppr_display_plugin_ranking($plugin_data)
+{
+    if (isset($plugin_data->tags)) {
+
+        $ranking_data = get_transient('wppr_ranking_data');
+        if ($ranking_data === false || isset($_GET['fresh'])) {
+            $ranking_data = array();
+            foreach ($plugin_data->tags as $tag_slug => $tag) {
+                $ranking_data[$tag_slug] = wppr_get_tag_results($tag);
+            }
+            // Add custom keywords if available
+            if (!empty(WPPR_Keywords) && is_array(WPPR_Keywords)) {
+                foreach (WPPR_Keywords as $keyword) {
+                    $keyword_slug = sanitize_title($keyword);
+                    $ranking_data[$keyword_slug] = wppr_get_tag_results($keyword);
+                }
+            }
+            set_transient('wppr_ranking_data', $ranking_data, DAY_IN_SECONDS);
+        }
+
+        wppr_get_template('plugin-rankings', $ranking_data);
+    }
+}
+
 function wppr_get_tag_results($tag, $page = 1, $saved_data = array())
 {
 
@@ -125,4 +193,21 @@ function wppr_get_formatted_number(float $num, int $precision = 2)
     }
 
     return '999Q+';
+}
+function wppr_get_template($name, $args = array())
+{
+
+    if ($overridden_template = locate_template('wppr/' . $name . '.php')) {
+        /*
+         * locate_template() returns path to file.
+         * if either the child theme or the parent theme have overridden the template.
+         */
+        load_template($overridden_template, true, $args);
+    } else {
+        /*
+         * If neither the child nor parent theme have overridden the template,
+         * we load the template from the 'templates' sub-directory of the directory this file is in.
+         */
+        load_template(dirname(__DIR__) . '/templates/' . $name . '.php', true, $args);
+    }
 }

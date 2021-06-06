@@ -1,3 +1,5 @@
+![Screenshot](https://raw.githubusercontent.com/bomsn/wp-plugin-rank/master/screenshot.md)
+
 ## Introduction
 This small tool was initially made to track WP repository ranking for [Mega Forms](https://wordpress.org/plugins/mega-forms/) plugin. I noticed the plugin isn't getting any traction compared to other solutions that are far lower in terms of quality, Thus, I decided I needed a way to track how's the plugin doing in WP repository search results, and try to improve the ranking based on the given results.
 
@@ -11,6 +13,8 @@ I did a small research and found that WordPress has a public API that I can use 
 - Change the constant `WPPR_Name` value to your plugin's name
 - Change the constant `WPPR_Slug` value to your plugin's slug
 - Save the file
+
+**Note:** This tool uses your plugin tags as search keywords by default. If you want to add more keywords, add them to `WPPR_Keywords` in the same file.
 
 ### Step 2
 - Log into your WordPress site.
