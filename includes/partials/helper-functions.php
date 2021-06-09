@@ -17,6 +17,8 @@ function wppr_get_plugin_data()
                 'short_description' => false,
                 'donate_link' => false,
                 'sections' => false,
+                'screenshots' => false,
+                'versions' => false,
                 'homepage' => false,
                 'added' => false,
                 'last_updated' => false,
@@ -24,9 +26,11 @@ function wppr_get_plugin_data()
                 'tested' => false,
                 'requires' => false,
                 'downloadlink' => false,
+                'banners' => false,
             )
         );
         set_transient('wppr_data', $call_api, DAY_IN_SECONDS);
+        error_log(print_r($call_api, true),0);
     }
 
     return $call_api;
@@ -104,12 +108,12 @@ function wppr_get_tag_results($tag, $page = 1, $saved_data = array())
     $data = array(
         'tag' => $tag,
         'page' => $page,
-        'position' => ($page * 20) + $position,
+        'position' => $page === 1 ? $position : (($page - 1) * 20) + $position,
         'top_competitors' => isset($saved_data['top_competitors']) ? $saved_data['top_competitors'] : wppr_get_plugin_competitors($results),
         'top_competitor_tags' => isset($saved_data['top_competitor_tags']) ? $saved_data['top_competitor_tags'] : wppr_get_plugin_competitor_tags($results),
     );
 
-    if ($key === false && $page < 21 && $page < (int)$response->info['pages']) {
+    if ($key === false && $page < 21 && isset($response->info) && $page < (int)$response->info['pages']) {
         // If the plugin is not in the current page results, check next page
         return wppr_get_tag_results($tag, $page + 1, $data);
     } elseif ($key === false) {
