@@ -14,12 +14,12 @@
 
         <tr>
             <th>Rating</th>
-            <td><?php echo $args->rating ?? '0'; ?>%</td>
+            <td><?php echo $args->rating ?? 'Not available'; ?>%</td>
         </tr>
 
         <tr>
             <th>Downloads</th>
-            <td><?php echo $args->downloaded ?? '0'; ?></td>
+            <td><?php echo $args->downloaded ?? 'Not available'; ?></td>
         </tr>
 
     </tbody>

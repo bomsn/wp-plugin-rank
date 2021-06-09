@@ -30,7 +30,6 @@ function wppr_get_plugin_data()
             )
         );
         set_transient('wppr_data', $call_api, DAY_IN_SECONDS);
-        error_log(print_r($call_api, true),0);
     }
 
     return $call_api;
